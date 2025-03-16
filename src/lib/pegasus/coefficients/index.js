@@ -34,7 +34,8 @@ const coefficients = {
 
 export async function computeAverages(filters, marks)
 {
-    const coefficients = (await import(getCoefficients(filters))).default || {};
+    const file = getCoefficients(filters);
+    const coefficients = file ? (await import(file /* @vite-ignore */)).default : {};
 
     // Code is pretty repetitive, but at least it's clear what's going on.
 
